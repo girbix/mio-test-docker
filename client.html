@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Portale Cliente</title>
+    <style>
+        body { background: #121212; color: #e0e0e0; font-family: sans-serif; margin: 0; }
+        header { background: #000; padding: 15px; border-bottom: 2px solid #811d1d; display: flex; justify-content: space-between; }
+        .container { padding: 20px; }
+        .form { background: #1e1e1e; padding: 20px; border-radius: 4px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        label { display: block; margin-top: 10px; color: #aaa; font-size: 0.8em; }
+        input, select, textarea { width: 100%; padding: 8px; background: #2a2a2a; border: 1px solid #333; color: white; }
+    </style>
+</head>
+<body>
+    <header><span>NOC - Nuovo Incident</span> <b id="userDisplay"></b></header>
+    <div class="container">
+        <div class="form">
+            <div class="grid">
+                <div>
+                    <label>Location *</label>
+                    <input type="text" list="locs" required placeholder="Seleziona sede...">
+                    <label>Servizio *</label>
+                    <input type="text" list="servs" required>
+                    <label>Configuration Item (CI)</label>
+                    <input type="text" list="cis">
+                </div>
+                <div>
+                    <label>Urgenza</label>
+                    <select><option>Low</option><option>Medium</option><option>High</option></select>
+                    <label>Contratto</label>
+                    <input type="text" value="SLA-GOLD-2026" readonly>
+                </div>
+            </div>
+            <label>Descrizione Breve *</label>
+            <input type="text" required>
+            <button style="margin-top:20px; background:#811d1d; color:white; border:none; padding:10px 20px; cursor:pointer;">INVIA TICKET</button>
+        </div>
+    </div>
+    <datalist id="locs"><option value="Torino - HQ"><option value="Milano - Sede 1"></datalist>
+    <datalist id="servs"><option value="Network LAN"><option value="Cloud Storage"></datalist>
+    <datalist id="cis"><option value="SW-WH-04"><option value="SVR-PROD-01"></datalist>
+    <script>
+        const u = JSON.parse(localStorage.getItem('user'));
+        if(!u) window.location.href='index.html';
+        document.getElementById('userDisplay').innerText = u.name;
+    </script>
+</body>
+</html>
