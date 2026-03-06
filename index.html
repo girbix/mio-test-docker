@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOC ServiceNow - Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-mode"> <!-- Tema predefinito dark -->
+    <div class="header">
+        <h1>Network Operations Center</h1>
+        <div class="red-line"></div>
+        <button id="themeToggle" class="theme-btn" aria-label="Cambia tema">🌓</button>
+    </div>
+
+    <div class="login-container">
+        <h2>Accesso Unificato (RBAC ISO 27001)</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Email</label>
+                <input type="email" id="username" name="username" required placeholder="nome@dominio.it">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required placeholder="••••••••">
+            </div>
+            <button type="submit" class="btn-primary">Accedi</button>
+            <p id="loginError" class="error-message"></p>
+        </form>
+        <div class="login-info">
+            <p><strong>Utenti di test (multi-tenancy):</strong></p>
+            <ul>
+                <li><b>TechInnovate srl</b>: client1@techinnovate.it / client</li>
+                <li><b>Global Logistics</b>: client2@globallogistics.it / client</li>
+                <li><b>FinanzaSicura S.A.</b>: client3@finanzasicura.it / client</li>
+                <li><b>EcoEnergy Group</b>: client4@ecoenergy.it / client</li>
+                <li><b>Tecnico NOC</b>: tecnico.noc@it.it / 123</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

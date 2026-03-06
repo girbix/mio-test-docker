@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  noc-app:
+    build: .
+    container_name: noc-servicenow
+    ports:
+      - "8080:8080"
+    volumes:
+      # Monta i file locali nel container per sviluppo live (senza dover ricostruire)
+      - ./index.html:/usr/share/nginx/html/index.html
+      - ./client.html:/usr/share/nginx/html/client.html
+      - ./tech.html:/usr/share/nginx/html/tech.html
+      - ./style.css:/usr/share/nginx/html/style.css
+      - ./app.js:/usr/share/nginx/html/app.js
+    # Per ricaricare automaticamente quando i file cambiano, nginx non serve, ma i file vengono aggiornati.
+    # Se si desidera, si può aggiungere un volume anche per la configurazione nginx, ma non necessario.
