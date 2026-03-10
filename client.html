@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOC - Nuovo Incident (Cliente)</title>
+    <title>NOC - Portale Cliente</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="dark-mode">
     <div class="header">
-        <h1>Nuovo Incident</h1>
+        <h1>Portale Self-Service</h1>
         <div class="red-line"></div>
         <div class="user-info">
             <span id="loggedUser"></span> | <a href="#" id="logoutLink">Logout</a>
@@ -16,68 +16,131 @@
         <button id="themeToggle" class="theme-btn" aria-label="Cambia tema">🌓</button>
     </div>
 
-    <div class="container two-column">
-        <form id="incidentForm">
-            <!-- Colonna sinistra -->
-            <div class="left-column">
-                <div class="form-group required">
-                    <label for="requestedBy">Requested by</label>
-                    <input type="text" id="requestedBy" name="requestedBy" required readonly>
+    <div class="container">
+        <!-- Sezione Monitoraggio -->
+        <div class="monitoring-section">
+            <h2>Monitoraggio Ticket</h2>
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <span class="stat-label">Aperti</span>
+                    <span class="stat-value" id="openCount">0</span>
                 </div>
-                <div class="form-group required">
-                    <label for="service">Service</label>
-                    <input type="text" id="service" name="service" list="service-list" required placeholder="Seleziona o digita">
-                    <datalist id="service-list"></datalist>
+                <div class="stat-card">
+                    <span class="stat-label">In lavorazione</span>
+                    <span class="stat-value" id="inProgressCount">0</span>
                 </div>
-                <div class="form-group required">
-                    <label for="shortDescription">Short Description</label>
-                    <textarea id="shortDescription" name="shortDescription" rows="2" required></textarea>
+                <div class="stat-card">
+                    <span class="stat-label">Risolti</span>
+                    <span class="stat-value" id="resolvedCount">0</span>
                 </div>
             </div>
+            <div class="progress-container">
+                <label>Andamento generale</label>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%;">0%</div>
+                </div>
+            </div>
+        </div>
 
-            <!-- Colonna destra -->
-            <div class="right-column">
-                <div class="form-group">
-                    <label for="location">Location</label>
-                    <input type="text" id="location" name="location" list="location-list" placeholder="Seleziona o digita">
-                    <datalist id="location-list"></datalist>
-                </div>
-                <div class="form-group">
-                    <label for="serviceOffering">Service Offering</label>
-                    <input type="text" id="serviceOffering" name="serviceOffering" list="offering-list" placeholder="Seleziona o digita">
-                    <datalist id="offering-list"></datalist>
-                </div>
-                <div class="form-group">
-                    <label for="ci">Configuration Item (CI)</label>
-                    <input type="text" id="ci" name="ci" list="ci-list" placeholder="Seleziona o digita">
-                    <datalist id="ci-list"></datalist>
-                </div>
-                <div class="form-group">
-                    <label for="urgency">Urgency</label>
-                    <select id="urgency" name="urgency">
-                        <option value="Low">Low</option>
-                        <option value="Medium" selected>Medium</option>
-                        <option value="High">High</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="impact">Impact</label>
-                    <select id="impact" name="impact">
-                        <option value="Low">Low</option>
-                        <option value="Medium" selected>Medium</option>
-                        <option value="High">High</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="contract">Contract</label>
-                    <input type="text" id="contract" name="contract" placeholder="Numero contratto">
-                </div>
-            </div>
+        <!-- Tabella ticket cliente -->
+        <div class="tickets-section">
+            <h3>I tuoi ticket</h3>
+            <table class="ticket-table" id="clientTicketTable">
+                <thead>
+                    <tr>
+                        <th>Numero</th>
+                        <th>Tipo</th>
+                        <th>Descrizione</th>
+                        <th>Stato</th>
+                        <th>Priorità</th>
+                        <th>Aperto il</th>
+                    </tr>
+                </thead>
+                <tbody id="clientTicketList"></tbody>
+            </table>
+        </div>
 
-            <div class="full-width">
-                <button type="submit" class="btn-primary">Invia Incident</button>
+        <!-- Pulsante per nuovo incident -->
+        <button id="newIncidentBtn" class="btn-primary">+ Nuovo Incident</button>
+
+        <!-- Modale per creazione incident (esattamente come screenshot) -->
+        <div id="incidentModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Crea Nuovo Incident</h2>
+                <form id="incidentForm" class="two-column">
+                    <!-- Colonna sinistra -->
+                    <div class="left-column">
+                        <div class="form-group required">
+                            <label for="requestedBy">Requested by</label>
+                            <input type="text" id="requestedBy" name="requestedBy" required readonly>
+                        </div>
+                        <div class="form-group required">
+                            <label for="caller">Caller</label>
+                            <input type="text" id="caller" name="caller" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Location</label>
+                            <input type="text" id="location" name="location" list="location-list">
+                            <datalist id="location-list"></datalist>
+                        </div>
+                        <div class="form-group required">
+                            <label for="service">Service</label>
+                            <input type="text" id="service" name="service" list="service-list" required>
+                            <datalist id="service-list"></datalist>
+                        </div>
+                        <div class="form-group">
+                            <label for="serviceOffering">Service Offering</label>
+                            <input type="text" id="serviceOffering" name="serviceOffering" list="offering-list">
+                            <datalist id="offering-list"></datalist>
+                        </div>
+                        <div class="form-group">
+                            <label for="ci">Configuration Item</label>
+                            <input type="text" id="ci" name="ci" list="ci-list">
+                            <datalist id="ci-list"></datalist>
+                        </div>
+                    </div>
+                    <!-- Colonna destra -->
+                    <div class="right-column">
+                        <div class="form-group required">
+                            <label for="shortDescription">Short description</label>
+                            <input type="text" id="shortDescription" name="shortDescription" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="internalNotes">Internal notes</label>
+                            <textarea id="internalNotes" rows="2"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="urgency">Urgency</label>
+                            <select id="urgency">
+                                <option value="Low">Low</option>
+                                <option value="Medium" selected>Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="impact">Impact</label>
+                            <select id="impact">
+                                <option value="Low">Low</option>
+                                <option value="Medium" selected>Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="contract">Contract</label>
+                            <input type="text" id="contract">
+                        </div>
+                    </div>
+                    <div class="full-width">
+                        <button type="submit" class="btn-primary">Crea Incident</button>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
 
     <script src="app.js"></script>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOC - Dettaglio Change</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-mode">
+    <div class="header">
+        <h1>Change Request <span id="changeNumber"></span></h1>
+        <div class="red-line"></div>
+        <div class="user-info">
+            <span id="loggedUser"></span> | <a href="#" id="logoutLink">Logout</a> | <a href="tech.html">Dashboard</a>
+        </div>
+        <button id="themeToggle" class="theme-btn" aria-label="Cambia tema">🌓</button>
+    </div>
+
+    <div class="container">
+        <!-- Tabs (come screenshot) -->
+        <div class="tabs">
+            <button class="tab-button active" data-tab="planning">Pianificazione</button>
+            <button class="tab-button" data-tab="notes">Note Interne</button>
+            <button class="tab-button" data-tab="closure">Chiusura</button>
+        </div>
+
+        <!-- Tab Pianificazione (campi richiesti) -->
+        <div id="planning" class="tab-content active">
+            <form class="two-column">
+                <div class="left-column">
+                    <div class="form-group">
+                        <label>Number</label>
+                        <input type="text" id="number" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Opened</label>
+                        <input type="text" id="opened" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Requested by</label>
+                        <input type="text" id="requestedBy" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Service offering</label>
+                        <input type="text" id="serviceOffering">
+                    </div>
+                    <div class="form-group">
+                        <label>Configuration item</label>
+                        <input type="text" id="ci">
+                    </div>
+                    <div class="form-group">
+                        <label>Short description</label>
+                        <input type="text" id="shortDescription">
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="description" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Risk</label>
+                        <select id="risk">
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="right-column">
+                    <div class="form-group required">
+                        <label for="justification">Giustificazione</label>
+                        <textarea id="justification" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group required">
+                        <label for="implementationPlan">Piano di implementazione</label>
+                        <textarea id="implementationPlan" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group required">
+                        <label for="riskAnalysis">Analisi di rischio e impatto</label>
+                        <textarea id="riskAnalysis" rows="4" required></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Tab Note Interne -->
+        <div id="notes" class="tab-content">
+            <h3>Note Interne (Work Notes)</h3>
+            <div class="form-group">
+                <label for="workNotes">Note private (visibili solo ai tecnici)</label>
+                <textarea id="workNotes" rows="6"></textarea>
+            </div>
+        </div>
+
+        <!-- Tab Chiusura con RCA -->
+        <div id="closure" class="tab-content">
+            <h3>Chiusura Ticket e RCA</h3>
+            <form>
+                <div class="form-group">
+                    <label for="ticketGrade">Grado ticket</label>
+                    <select id="ticketGrade">
+                        <option value="1">Grado 1 (Critico)</option>
+                        <option value="2">Grado 2 (Alto)</option>
+                        <option value="3">Grado 3 (Medio)</option>
+                    </select>
+                </div>
+                <div class="form-group required" id="rcaGroup">
+                    <label for="rca">Root Cause Analysis (RCA) <span id="rcaRequired" class="required-badge">Obbligatorio per Grado 1</span></label>
+                    <textarea id="rca" rows="4"></textarea>
+                </div>
+            </form>
+        </div>
+
+        <div class="full-width">
+            <button id="updateChangeBtn" class="btn-primary">Aggiorna Change</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

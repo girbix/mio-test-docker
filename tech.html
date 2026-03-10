@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOC - Workspace Tecnico</title>
+    <title>NOC - Operations Dashboard</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="dark-mode">
     <div class="header">
-        <h1>NOC Workspace (Team Network L2)</h1>
+        <h1>NOC Operations Dashboard</h1>
         <div class="red-line"></div>
         <div class="user-info">
             <span id="loggedUser"></span> | <a href="#" id="logoutLink">Logout</a>
@@ -17,64 +17,39 @@
     </div>
 
     <div class="container">
-        <!-- Tabs -->
-        <div class="tabs">
-            <button class="tab-button active" data-tab="planning">Pianificazione</button>
-            <button class="tab-button" data-tab="notes">Note Interne</button>
-            <button class="tab-button" data-tab="closure">Chiusura</button>
-        </div>
-
-        <!-- Tab Pianificazione -->
-        <div id="planning" class="tab-content active">
-            <h3>Pianificazione Change</h3>
-            <form class="two-column">
-                <div class="left-column">
-                    <div class="form-group required">
-                        <label for="justification">Giustificazione</label>
-                        <textarea id="justification" rows="3" required></textarea>
-                    </div>
-                    <div class="form-group required">
-                        <label for="implementationPlan">Piano di implementazione</label>
-                        <textarea id="implementationPlan" rows="4" required></textarea>
-                    </div>
-                </div>
-                <div class="right-column">
-                    <div class="form-group required">
-                        <label for="riskAnalysis">Analisi di rischio e impatto</label>
-                        <textarea id="riskAnalysis" rows="4" required></textarea>
-                    </div>
-                </div>
-            </form>
-        </div>
-
-        <!-- Tab Note Interne -->
-        <div id="notes" class="tab-content">
-            <h3>Note Interne (Work Notes)</h3>
-            <div class="form-group">
-                <label for="workNotes">Note private (visibili solo ai tecnici)</label>
-                <textarea id="workNotes" rows="6" placeholder="Inserisci note tecniche..."></textarea>
+        <!-- Contatori stile NOC -->
+        <div class="stats-cards">
+            <div class="stat-card">
+                <span class="stat-label">Open</span>
+                <span class="stat-value" id="openTickets">0</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">In Progress</span>
+                <span class="stat-value" id="inProgressTickets">0</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Critical SLA</span>
+                <span class="stat-value" id="criticalSLA">0</span>
             </div>
         </div>
 
-        <!-- Tab Chiusura -->
-        <div id="closure" class="tab-content">
-            <h3>Chiusura Ticket e RCA</h3>
-            <form>
-                <div class="form-group">
-                    <label for="ticketGrade">Grado ticket</label>
-                    <select id="ticketGrade">
-                        <option value="1">Grado 1 (Critico)</option>
-                        <option value="2">Grado 2 (Alto)</option>
-                        <option value="3">Grado 3 (Medio)</option>
-                    </select>
-                </div>
-                <div class="form-group required" id="rcaGroup">
-                    <label for="rca">Root Cause Analysis (RCA) <span id="rcaRequired" class="required-badge">Obbligatorio per Grado 1</span></label>
-                    <textarea id="rca" rows="4"></textarea>
-                </div>
-                <button type="submit" class="btn-primary">Chiudi Ticket</button>
-            </form>
-        </div>
+        <!-- Tabella ticket attivi (Incident e Change) -->
+        <h3>Ticket attivi</h3>
+        <table class="ticket-table" id="activeTicketsTable">
+            <thead>
+                <tr>
+                    <th>Tipo</th>
+                    <th>Numero</th>
+                    <th>Short description</th>
+                    <th>Stato</th>
+                    <th>Priorità</th>
+                    <th>Team</th>
+                    <th>Assegnato a</th>
+                    <th>Aperto il</th>
+                </tr>
+            </thead>
+            <tbody id="ticketList"></tbody>
+        </table>
     </div>
 
     <script src="app.js"></script>

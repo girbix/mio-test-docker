@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOC - Dettaglio Incident</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-mode">
+    <div class="header">
+        <h1>Incident <span id="incidentNumber"></span></h1>
+        <div class="red-line"></div>
+        <div class="user-info">
+            <span id="loggedUser"></span> | <a href="#" id="logoutLink">Logout</a> | <a href="tech.html">Dashboard</a>
+        </div>
+        <button id="themeToggle" class="theme-btn" aria-label="Cambia tema">🌓</button>
+    </div>
+
+    <div class="container two-column">
+        <!-- Colonna sinistra (campi principali) -->
+        <div class="left-column">
+            <div class="form-group">
+                <label>Number</label>
+                <input type="text" id="number" readonly>
+            </div>
+            <div class="form-group">
+                <label>Opened</label>
+                <input type="text" id="opened" readonly>
+            </div>
+            <div class="form-group">
+                <label>Requested by</label>
+                <input type="text" id="requestedBy" readonly>
+            </div>
+            <div class="form-group">
+                <label>Caller</label>
+                <input type="text" id="caller" readonly>
+            </div>
+            <div class="form-group">
+                <label>Location</label>
+                <input type="text" id="location" readonly>
+            </div>
+            <div class="form-group">
+                <label>Service offering</label>
+                <input type="text" id="serviceOffering">
+            </div>
+            <div class="form-group">
+                <label>Configuration item</label>
+                <input type="text" id="ci">
+            </div>
+            <div class="form-group">
+                <label>Short description</label>
+                <input type="text" id="shortDescription">
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea id="description" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Internal notes</label>
+                <textarea id="internalNotes" rows="3"></textarea>
+            </div>
+        </div>
+
+        <!-- Colonna destra (altri campi) -->
+        <div class="right-column">
+            <div class="form-group">
+                <label>Channel</label>
+                <input type="text" id="channel" value="Self-Service" readonly>
+            </div>
+            <div class="form-group">
+                <label>State</label>
+                <select id="state">
+                    <option value="New">New</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Resolved">Resolved</option>
+                    <option value="Closed">Closed</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Impact</label>
+                <select id="impact">
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Urgency</label>
+                <select id="urgency">
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Priority</label>
+                <input type="text" id="priority" readonly>
+            </div>
+            <div class="form-group">
+                <label>Parent Incident</label>
+                <input type="text" id="parentIncident" list="parent-list">
+                <datalist id="parent-list"></datalist>
+            </div>
+            <div class="form-group">
+                <label>Assignment group</label>
+                <select id="assignmentGroup"></select>
+            </div>
+            <div class="form-group">
+                <label>Assigned to</label>
+                <select id="assignedTo"></select>
+            </div>
+            <div class="form-group">
+                <label>Contract</label>
+                <input type="text" id="contract">
+            </div>
+        </div>
+
+        <div class="full-width">
+            <button id="updateIncidentBtn" class="btn-primary">Aggiorna Incident</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

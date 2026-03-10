@@ -1,11 +1,15 @@
 # Prototipo NOC basato su ServiceNow - Tesi ITS
 
 Questo progetto implementa un prototipo funzionale di Network Operations Center (NOC) con interfacce cliente e tecnico, ispirato a ServiceNow. Include:
-- Login con RBAC (ISO 27001) e multi-tenancy (4 aziende).
+
+- Login con RBAC (ISO 27001) e multi-tenancy per 4 aziende.
 - Theme switcher (chiaro/scuro) con salvataggio preferenza.
-- Pagina cliente per la creazione di Incident con dati specifici del tenant (location, CI, servizi).
-- Pagina tecnico con workspace a tab (Pianificazione, Note Interne, Chiusura con RCA obbligatoria per ticket Grado 1).
-- Docker e docker-compose per ambienti di sviluppo riproducibili.
+- Dashboard cliente con monitoraggio ticket e creazione incident (form fedele a screenshot).
+- Dashboard NOC con contatori e tabella ticket attivi (Incident e Change).
+- Dettaglio Incident con tutti i campi dell'immagine fornita.
+- Dettaglio Change con tab Pianificazione, Note Interne, Chiusura e RCA obbligatoria per Grado 1.
+- 12 tecnici distribuiti in 3 team (Network, Cloud, Cyber Security) con livelli L1, L2, L3 (4 per livello).
+- Persistenza ticket in localStorage per simulazione database.
 
 ## Tecnologie utilizzate
 - HTML5, CSS3 (variabili CSS per temi), JavaScript (ES6)
@@ -13,15 +17,19 @@ Questo progetto implementa un prototipo funzionale di Network Operations Center 
 - GitHub Codespaces come ambiente di sviluppo
 
 ## Struttura dei file
+
 .
 ├── index.html # Login
-├── client.html # Creazione Incident (cliente)
-├── tech.html # Workspace tecnico
+├── client.html # Dashboard cliente
+├── tech.html # Dashboard NOC
+├── incident-detail.html # Dettaglio incident
+├── change-detail.html # Dettaglio change
 ├── style.css # Stili con tema dinamico
 ├── app.js # Logica applicativa
 ├── Dockerfile # Immagine nginx personalizzata
 ├── docker-compose.yml # Configurazione servizi
 └── README.md # Questa documentazione
+text
 
 
 ## Come avviare il progetto
@@ -30,59 +38,57 @@ Questo progetto implementa un prototipo funzionale di Network Operations Center 
 - Docker e docker-compose installati (o ambiente GitHub Codespaces).
 
 ### Passi
-1. **Clonare il repository** (assicurati di aver configurato l'email GitHub per i commit):
+1. **Clonare il repository**:
    ```bash
    git clone https://github.com/tuo-utente/noc-servicenow.git
    cd noc-servicenow
-2. **Se necessario, correggere l'autore del commit (es. dopo aver usato l'email di GitHub no-reply):**
-   ```bash
+
+    Se necessario, correggere l'autore del commit (es. dopo aver usato l'email di GitHub no-reply):
+    bash
+
     git commit --amend --no-edit --reset-author
     git push --force
-3. **Avviare con docker-compose:**
-    ```bash
+
+    Avviare con docker-compose:
+    bash
+
     docker-compose up -d
+
     L'applicazione sarà disponibile su http://localhost:8080.
-4. Sviluppo live: I file HTML, CSS e JS sono montati come volumi; modificali e il browser li rifletterà dopo il refresh.
+
+    Sviluppo live: I file HTML, CSS e JS sono montati come volumi; modificali e il browser li rifletterà dopo il refresh.
 
 Utenti di test
-Ruolo	Email	Password	Azienda
-Cliente	client1@techinnovate.it	client	TechInnovate srl
-Cliente	client2@globallogistics.it	client	Global Logistics
-Cliente	client3@finanzasicura.it	client	FinanzaSicura S.A.
-Cliente	client4@ecoenergy.it	client	EcoEnergy Group
-Tecnico	tecnico.noc@it.it	123	Team Network L2
+Clienti (4 aziende)
+Azienda	Email	Password	Nome referente
+TechInnovate srl	client1@techinnovate.it	client	Mario Rossi
+Global Logistics	client2@globallogistics.it	client	Laura Bianchi
+FinanzaSicura S.A.	client3@finanzasicura.it	client	Giuseppe Verdi
+EcoEnergy Group	client4@ecoenergy.it	client	Francesca Neri
+Tecnico NOC
+Email	Password	Ruolo
+tecnico.noc@it.it	123	tech
+Team e tecnici
+
+Il sistema include 12 tecnici così distribuiti:
+Livello	Network	Cloud	Cyber Security
+L1	Mario Rossi, Luigi Bianchi	Giulia Verdi	Paolo Neri
+L2	Anna Gialli	Marco Blu, Laura Viola	Stefano Arancio
+L3	Chiara Rosa	Andrea Grigio	Elena Marrone, Davide Celeste
 Funzionalità principali
 
     Theme switcher: In alto a destra su ogni pagina, cambia tra tema scuro (default) e chiaro. La scelta viene salvata in localStorage.
 
     Multi-tenancy: Ogni cliente vede solo le proprie sedi, servizi, CI e service offering nei campi di autocompletamento.
 
-    Validazione: Campi obbligatori contrassegnati con *. In tech.html, la RCA è obbligatoria solo per ticket di Grado 1.
+    Dashboard cliente: Mostra statistiche (aperti, in lavorazione, risolti) e una progress bar. La tabella elenca i ticket e cliccando si va al dettaglio.
 
-    Simulazioni: I form non inviano dati a un backend ma mostrano un alert e stampano in console.
+    Creazione incident: Modale con tutti i campi dell'immagine, inclusi Requested by, Caller, Location, Service, ecc.
 
-Note per la tesi
+    Dashboard NOC: Contatori per ticket aperti, in progress e con SLA critico. Tabella interattiva con tutti i ticket.
 
-    Il codice è ampiamente commentato per illustrare le scelte implementative (RBAC, isolamento dati, gestione temi).
+    Dettaglio Incident: Pagina a due colonne con campi editabili (es. stato, priorità, assegnazione). Include campo Parent Incident con datalist.
 
-    La conformità ISO 27001 è simulata tramite separazione dei dati per tenant e controllo accessi basato sui ruoli.
+    Dettaglio Change: Tabs per Pianificazione (giustificazione, piano, analisi rischio), Note Interne e Chiusura (RCA obbligatoria per grado 1).
 
-    L'uso di Docker garantisce riproducibilità dell'ambiente di esecuzione.
-
-Possibili miglioramenti futuri
-
-    Integrazione con un backend reale (es. Node.js + database).
-
-    Autenticazione più robusta (JWT, OAuth2).
-
-    Test automatici con Cypress o Jest.
-
-text
-
-
----
-
-### **Conclusione**
-
-Il progetto è completo e pronto per essere utilizzato in un contesto di tesi. Ogni file è stato progettato per essere modulare e ben commentato. Ricorda di verificare che i percorsi dei file nel `docker-compose.yml` corrispondano alla struttura effettiva. Buon lavoro!
-
+    Persistenza: I ticket vengono salvati in localStorage e sono condivisi tra client e tecnico in tempo reale.
