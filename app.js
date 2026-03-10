@@ -39,34 +39,45 @@ const clientUsers = [
 // Team e tecnici (12 totali: 4 L1, 4 L2, 4 L3, distribuiti tra Network, Cloud, Cyber Security)
 const technicians = [
     // L1
-    { name: 'Mario Rossi', team: 'Network', level: 'L1' },
-    { name: 'Luigi Bianchi', team: 'Network', level: 'L1' },
-    { name: 'Giulia Verdi', team: 'Cloud', level: 'L1' },
-    { name: 'Paolo Neri', team: 'Cyber Security', level: 'L1' },
+    { name: 'Mario Rossi', team: 'Network', level: 'L1', email: 'mario.rossi@noc.it', password: 'L1_network' },
+    { name: 'Luigi Bianchi', team: 'Network', level: 'L1', email: 'luigi.bianchi@noc.it', password: 'L1_network' },
+    { name: 'Giulia Verdi', team: 'Cloud', level: 'L1', email: 'giulia.verdi@noc.it', password: 'L1_cloud' },
+    { name: 'Paolo Neri', team: 'Cyber Security', level: 'L1', email: 'paolo.neri@noc.it', password: 'L1_cyber' },
     // L2
-    { name: 'Anna Gialli', team: 'Network', level: 'L2' },
-    { name: 'Marco Blu', team: 'Cloud', level: 'L2' },
-    { name: 'Laura Viola', team: 'Cloud', level: 'L2' },
-    { name: 'Stefano Arancio', team: 'Cyber Security', level: 'L2' },
+    { name: 'Anna Gialli', team: 'Network', level: 'L2', email: 'anna.gialli@noc.it', password: 'L2_network' },
+    { name: 'Marco Blu', team: 'Cloud', level: 'L2', email: 'marco.blu@noc.it', password: 'L2_cloud' },
+    { name: 'Laura Viola', team: 'Cloud', level: 'L2', email: 'laura.viola@noc.it', password: 'L2_cloud' },
+    { name: 'Stefano Arancio', team: 'Cyber Security', level: 'L2', email: 'stefano.arancio@noc.it', password: 'L2_cyber' },
     // L3
-    { name: 'Chiara Rosa', team: 'Network', level: 'L3' },
-    { name: 'Andrea Grigio', team: 'Cloud', level: 'L3' },
-    { name: 'Elena Marrone', team: 'Cyber Security', level: 'L3' },
-    { name: 'Davide Celeste', team: 'Cyber Security', level: 'L3' }
+    { name: 'Chiara Rosa', team: 'Network', level: 'L3', email: 'chiara.rosa@noc.it', password: 'L3_network' },
+    { name: 'Andrea Grigio', team: 'Cloud', level: 'L3', email: 'andrea.grigio@noc.it', password: 'L3_cloud' },
+    { name: 'Elena Marrone', team: 'Cyber Security', level: 'L3', email: 'elena.marrone@noc.it', password: 'L3_cyber' },
+    { name: 'Davide Celeste', team: 'Cyber Security', level: 'L3', email: 'davide.celeste@noc.it', password: 'L3_cyber' }
 ];
 
-// Utente tecnico (per login)
-const techUser = {
+// Utente tecnico generico (admin)
+const genericTechUser = {
     username: 'tecnico.noc@it.it',
     password: '123',
     role: 'tech',
-    companyId: null,
-    fullName: 'Admin NOC'
+    fullName: 'Admin NOC',
+    team: 'N/A',
+    level: 'N/A'
 };
 
-// Uniamo tutti gli utenti
-const users = [...clientUsers, techUser];
-
+// Costruiamo l'array users: clienti + tutti i tecnici + generico
+const users = [
+    ...clientUsers,
+    ...technicians.map(t => ({
+        username: t.email,
+        password: t.password,
+        role: 'tech',
+        fullName: t.name,
+        team: t.team,
+        level: t.level
+    })),
+    genericTechUser
+];
 // Location per azienda
 const locations = {
     1: ['Torino', 'Milano'],
