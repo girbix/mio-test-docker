@@ -5,70 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NOC - Dettaglio Incident</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body class="dark-mode">
     <div class="header">
-        <h1>Incident <span id="incidentNumber"></span></h1>
+        <h1><i class="fas fa-bug"></i> Incident <span id="incidentNumber"></span></h1>
         <div class="red-line"></div>
         <div class="user-info">
-            <span id="loggedUser"></span> | <a href="#" id="logoutLink">Logout</a> | <a href="tech.html">Dashboard</a>
+            <span id="loggedUser"></span> | <a href="#" id="logoutLink"><i class="fas fa-sign-out-alt"></i> Logout</a> | <a href="tech.html"><i class="fas fa-chalkboard-user"></i> Dashboard</a>
         </div>
-        <button id="themeToggle" class="theme-btn" aria-label="Cambia tema">🌓</button>
+        <button id="themeToggle" class="theme-btn" aria-label="Cambia tema"><i class="fas fa-moon"></i></button>
     </div>
 
     <div class="container two-column">
-        <!-- Colonna sinistra (campi principali) -->
         <div class="left-column">
             <div class="form-group">
-                <label>Number</label>
+                <label><i class="fas fa-hashtag"></i> Number</label>
                 <input type="text" id="number" readonly>
             </div>
             <div class="form-group">
-                <label>Opened</label>
+                <label><i class="fas fa-calendar-alt"></i> Opened</label>
                 <input type="text" id="opened" readonly>
             </div>
             <div class="form-group">
-                <label>Requested by</label>
+                <label><i class="fas fa-user"></i> Requested by</label>
                 <input type="text" id="requestedBy" readonly>
             </div>
             <div class="form-group">
-                <label>Caller</label>
+                <label><i class="fas fa-phone-alt"></i> Caller</label>
                 <input type="text" id="caller" readonly>
             </div>
             <div class="form-group">
-                <label>Location</label>
+                <label><i class="fas fa-map-marker-alt"></i> Location</label>
                 <input type="text" id="location" readonly>
             </div>
             <div class="form-group">
-                <label>Service offering</label>
+                <label><i class="fas fa-tasks"></i> Service offering</label>
                 <input type="text" id="serviceOffering">
             </div>
             <div class="form-group">
-                <label>Configuration item</label>
+                <label><i class="fas fa-server"></i> Configuration item</label>
                 <input type="text" id="ci">
             </div>
             <div class="form-group">
-                <label>Short description</label>
+                <label><i class="fas fa-heading"></i> Short description</label>
                 <input type="text" id="shortDescription">
             </div>
             <div class="form-group">
-                <label>Description</label>
+                <label><i class="fas fa-align-left"></i> Description</label>
                 <textarea id="description" rows="3"></textarea>
             </div>
             <div class="form-group">
-                <label>Internal notes</label>
+                <label><i class="fas fa-sticky-note"></i> Internal notes</label>
                 <textarea id="internalNotes" rows="3"></textarea>
             </div>
         </div>
 
-        <!-- Colonna destra (altri campi) -->
         <div class="right-column">
             <div class="form-group">
-                <label>Channel</label>
+                <label><i class="fas fa-rss"></i> Channel</label>
                 <input type="text" id="channel" value="Self-Service" readonly>
             </div>
             <div class="form-group">
-                <label>State</label>
+                <label><i class="fas fa-tag"></i> State</label>
                 <select id="state">
                     <option value="New">New</option>
                     <option value="In Progress">In Progress</option>
@@ -77,7 +76,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label>Impact</label>
+                <label><i class="fas fa-chart-line"></i> Impact</label>
                 <select id="impact">
                     <option value="Low">Low</option>
                     <option value="Medium">Medium</option>
@@ -85,7 +84,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label>Urgency</label>
+                <label><i class="fas fa-exclamation-triangle"></i> Urgency</label>
                 <select id="urgency">
                     <option value="Low">Low</option>
                     <option value="Medium">Medium</option>
@@ -93,33 +92,58 @@
                 </select>
             </div>
             <div class="form-group">
-                <label>Priority</label>
+                <label><i class="fas fa-chart-simple"></i> Priority</label>
                 <input type="text" id="priority" readonly>
             </div>
             <div class="form-group">
-                <label>Parent Incident</label>
+                <label><i class="fas fa-level-up-alt"></i> Parent Incident</label>
                 <input type="text" id="parentIncident" list="parent-list">
                 <datalist id="parent-list"></datalist>
             </div>
             <div class="form-group">
-                <label>Assignment group</label>
+                <label><i class="fas fa-users"></i> Assignment group</label>
                 <select id="assignmentGroup"></select>
             </div>
             <div class="form-group">
-                <label>Assigned to</label>
+                <label><i class="fas fa-user-check"></i> Assigned to</label>
                 <select id="assignedTo"></select>
             </div>
             <div class="form-group">
-                <label>Contract</label>
+                <label><i class="fas fa-file-contract"></i> Contract</label>
                 <input type="text" id="contract">
             </div>
         </div>
 
         <div class="full-width">
-            <button id="updateIncidentBtn" class="btn-primary">Aggiorna Incident</button>
+            <div class="suggestion-box">
+                <div class="form-group">
+                    <label><i class="fas fa-robot"></i> Team suggerito (AI)</label>
+                    <input type="text" id="suggestedTeam" readonly class="suggested-team">
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-tasks"></i> Assegna a team</label>
+                    <select id="assignedTeam">
+                        <option value="">Seleziona team</option>
+                        <option value="Network">Network</option>
+                        <option value="Cloud">Cloud</option>
+                        <option value="Cyber Security">Cyber Security</option>
+                    </select>
+                </div>
+                <div class="client-history">
+                    <h4><i class="fas fa-history"></i> Ticket precedenti del cliente</h4>
+                    <ul id="clientHistory"></ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="full-width">
+            <button id="updateIncidentBtn" class="btn-primary"><i class="fas fa-save"></i> Aggiorna Incident</button>
         </div>
     </div>
 
-    <script src="app.js"></script>
+    <script src="data.js"></script>
+    <script src="utils.js"></script>
+    <script src="incident-detail.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>

@@ -12,4 +12,10 @@ services:
       - ./incident-detail.html:/usr/share/nginx/html/incident-detail.html
       - ./change-detail.html:/usr/share/nginx/html/change-detail.html
       - ./style.css:/usr/share/nginx/html/style.css
-      - ./app.js:/usr/share/nginx/html/app.js
+      - ./data.js:/usr/share/nginx/html/data.js
+      - ./utils.js:/usr/share/nginx/html/utils.js
+      - ./client.js:/usr/share/nginx/html/client.js
+      - ./tech.js:/usr/share/nginx/html/tech.js
+      - ./incident-detail.js:/usr/share/nginx/html/incident-detail.js
+      - ./change-detail.js:/usr/share/nginx/html/change-detail.js
+      - ./main.js:/usr/share/nginx/html/main.js

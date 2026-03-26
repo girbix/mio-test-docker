@@ -5,39 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NOC - Operations Dashboard</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body class="dark-mode">
     <div class="header">
-        <h1>NOC Operations Dashboard</h1>
+        <h1><i class="fas fa-chalkboard-user"></i> NOC Operations Dashboard</h1>
         <div class="red-line"></div>
         <div class="user-info">
-            <span id="loggedUser"></span> | <a href="#" id="logoutLink">Logout</a>
+            <span id="loggedUser"></span> | <a href="#" id="logoutLink"><i class="fas fa-sign-out-alt"></i> Logout</a>
         </div>
-        <button id="themeToggle" class="theme-btn" aria-label="Cambia tema">🌓</button>
+        <button id="themeToggle" class="theme-btn" aria-label="Cambia tema"><i class="fas fa-moon"></i></button>
     </div>
 
     <div class="container">
-        <!-- Contatori stile NOC -->
         <div class="stats-cards">
             <div class="stat-card">
-                <span class="stat-label">Open</span>
+                <span class="stat-label"><i class="fas fa-envelope-open-text"></i> Open</span>
                 <span class="stat-value" id="openTickets">0</span>
             </div>
             <div class="stat-card">
-                <span class="stat-label">In Progress</span>
+                <span class="stat-label"><i class="fas fa-spinner"></i> In Progress</span>
                 <span class="stat-value" id="inProgressTickets">0</span>
             </div>
             <div class="stat-card">
-                <span class="stat-label">Critical SLA</span>
+                <span class="stat-label"><i class="fas fa-stopwatch"></i> Critical SLA</span>
                 <span class="stat-value" id="criticalSLA">0</span>
             </div>
         </div>
 
-        <!-- Tabella ticket attivi (Incident e Change) -->
-        <h3>Ticket attivi</h3>
+        <h3><i class="fas fa-list-ul"></i> Ticket attivi (Incident & Change)</h3>
         <table class="ticket-table" id="activeTicketsTable">
             <thead>
-                <tr>
+                肇
                     <th>Tipo</th>
                     <th>Numero</th>
                     <th>Short description</th>
@@ -52,6 +51,9 @@
         </table>
     </div>
 
-    <script src="app.js"></script>
+    <script src="data.js"></script>
+    <script src="utils.js"></script>
+    <script src="tech.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
