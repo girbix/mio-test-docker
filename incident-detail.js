@@ -14,7 +14,6 @@ function setupIncidentDetail() {
         return;
     }
 
-    // Popola campi base
     document.getElementById('incidentNumber').textContent = ticket.number;
     document.getElementById('number').value = ticket.number;
     document.getElementById('opened').value = ticket.opened;
@@ -32,7 +31,6 @@ function setupIncidentDetail() {
     document.getElementById('priority').value = ticket.priority || '3 - Low';
     document.getElementById('contract').value = ticket.contract || '';
 
-    // Parent incident list
     const parentList = document.getElementById('parent-list');
     if (parentList) {
         parentList.innerHTML = '';
@@ -45,7 +43,6 @@ function setupIncidentDetail() {
     }
     document.getElementById('parentIncident').value = ticket.parentIncident || '';
 
-    // Assignment group e assigned to
     const groupSelect = document.getElementById('assignmentGroup');
     const assignedSelect = document.getElementById('assignedTo');
     const teamsList = [...new Set(technicians.map(t => t.team))];
@@ -72,12 +69,10 @@ function setupIncidentDetail() {
         assignedSelect.value = ticket.assignedTo || '';
     }
 
-    // Suggerimento team AI
     const suggested = ticket.suggestedTeam || suggestTeam(ticket.shortDescription, ticket.description);
     document.getElementById('suggestedTeam').value = suggested;
     document.getElementById('assignedTeam').value = ticket.assignedTeam || '';
 
-    // Storico cliente
     const clientHistory = document.getElementById('clientHistory');
     if (clientHistory) {
         clientHistory.innerHTML = '';
@@ -97,7 +92,6 @@ function setupIncidentDetail() {
         }
     }
 
-    // Aggiornamento
     document.getElementById('updateIncidentBtn').addEventListener('click', () => {
         const updates = {
             state: document.getElementById('state').value,

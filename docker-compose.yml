@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   noc-app:
     build: .
@@ -6,16 +5,4 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - ./index.html:/usr/share/nginx/html/index.html
-      - ./client.html:/usr/share/nginx/html/client.html
-      - ./tech.html:/usr/share/nginx/html/tech.html
-      - ./incident-detail.html:/usr/share/nginx/html/incident-detail.html
-      - ./change-detail.html:/usr/share/nginx/html/change-detail.html
-      - ./style.css:/usr/share/nginx/html/style.css
-      - ./data.js:/usr/share/nginx/html/data.js
-      - ./utils.js:/usr/share/nginx/html/utils.js
-      - ./client.js:/usr/share/nginx/html/client.js
-      - ./tech.js:/usr/share/nginx/html/tech.js
-      - ./incident-detail.js:/usr/share/nginx/html/incident-detail.js
-      - ./change-detail.js:/usr/share/nginx/html/change-detail.js
-      - ./main.js:/usr/share/nginx/html/main.js
+      - ./:/usr/share/nginx/html/

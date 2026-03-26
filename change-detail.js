@@ -30,7 +30,6 @@ function setupChangeDetail() {
     document.getElementById('ticketGrade').value = ticket.ticketGrade || '3';
     document.getElementById('rca').value = ticket.rca || '';
 
-    // Tabs
     const tabButtons = document.querySelectorAll('.tab-button');
     const tabContents = document.querySelectorAll('.tab-content');
     tabButtons.forEach(btn => {
@@ -42,7 +41,6 @@ function setupChangeDetail() {
         });
     });
 
-    // RCA obbligatoria per grado 1
     const ticketGrade = document.getElementById('ticketGrade');
     const rcaField = document.getElementById('rca');
     const toggleRcaRequired = () => {

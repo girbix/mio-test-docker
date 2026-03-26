@@ -1,4 +1,3 @@
-/* style.css - Tema dinamico (dark/light) con variabili CSS */
 * {
     margin: 0;
     padding: 0;
@@ -7,7 +6,6 @@
     transition: background-color 0.3s ease, color 0.2s ease;
 }
 
-/* Variabili tema scuro (default) */
 body.dark-mode {
     --bg-primary: #1e1e1e;
     --bg-secondary: #2d2d2d;
@@ -22,9 +20,9 @@ body.dark-mode {
     --btn-bg: #811d1d;
     --btn-hover: #a52525;
     --error-color: #ff6666;
+    --shadow: rgba(0,0,0,0.3);
 }
 
-/* Variabili tema chiaro */
 body.light-mode {
     --bg-primary: #f5f5f5;
     --bg-secondary: #ffffff;
@@ -39,6 +37,7 @@ body.light-mode {
     --btn-bg: #a33c3c;
     --btn-hover: #b84c4c;
     --error-color: #d32f2f;
+    --shadow: rgba(0,0,0,0.1);
 }
 
 body {
@@ -48,7 +47,6 @@ body {
     min-height: 100vh;
 }
 
-/* Header */
 .header {
     background-color: var(--header-bg);
     padding: 1rem 2rem;
@@ -57,301 +55,7 @@ body {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-}
-
-.header h1 {
-    color: #ffffff; /* resta bianco in entrambi i temi per contrasto */
-    font-size: 1.8rem;
-    font-weight: 300;
-}
-
-.red-line {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background-color: var(--red-line);
-}
-
-.user-info {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-}
-
-.user-info a {
-    color: var(--red-line);
-    text-decoration: none;
-}
-
-.user-info a:hover {
-    text-decoration: underline;
-}
-
-/* Pulsante tema */
-.theme-btn {
-    background: transparent;
-    border: 1px solid var(--red-line);
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 0.2rem 0.5rem;
-    border-radius: 20px;
-    line-height: 1;
-    transition: transform 0.2s;
-}
-
-.theme-btn:hover {
-    transform: scale(1.1);
-    background-color: rgba(255,255,255,0.1);
-}
-
-/* Container principale */
-.container {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 2rem;
-}
-
-/* Login */
-.login-container {
-    max-width: 400px;
-    margin: 4rem auto;
-    background-color: var(--bg-secondary);
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.login-container h2 {
-    margin-bottom: 1.5rem;
-    color: var(--text-primary);
-    border-bottom: 1px solid var(--red-line);
-    padding-bottom: 0.5rem;
-}
-
-.login-info {
-    margin-top: 2rem;
-    font-size: 0.9rem;
-    background-color: var(--bg-tertiary);
-    padding: 1rem;
-    border-radius: 4px;
-}
-
-.login-info ul {
-    margin-left: 1.5rem;
-    color: var(--text-secondary);
-}
-
-/* Form elements */
-.form-group {
-    margin-bottom: 1.2rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.4rem;
-    color: var(--text-secondary);
-    font-weight: 500;
-    font-size: 0.9rem;
-}
-
-.form-group.required label::after {
-    content: " *";
-    color: var(--error-color);
-    font-weight: bold;
-}
-
-input, select, textarea {
-    width: 100%;
-    padding: 0.7rem;
-    background-color: var(--input-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    color: var(--text-primary);
-    font-size: 1rem;
-    transition: border 0.3s;
-}
-
-input:focus, select:focus, textarea:focus {
-    outline: none;
-    border-color: var(--red-line);
-    background-color: var(--input-bg);
-}
-
-input[readonly] {
-    background-color: var(--input-bg-readonly);
-    color: var(--text-secondary);
-    cursor: not-allowed;
-}
-
-/* Datalist (non stilizzabile direttamente) */
-datalist {
-    display: none;
-}
-
-/* Pulsanti */
-.btn-primary {
-    background-color: var(--btn-bg);
-    color: white;
-    border: none;
-    padding: 0.8rem 1.5rem;
-    border-radius: 4px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    width: 100%;
-}
-
-.btn-primary:hover {
-    background-color: var(--btn-hover);
-}
-
-/* Griglia a due colonne */
-.two-column {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    background-color: var(--bg-secondary);
-    padding: 2rem;
-    border-radius: 8px;
-}
-
-.full-width {
-    grid-column: span 2;
-    margin-top: 1rem;
-}
-
-/* Tabs */
-.tabs {
-    display: flex;
-    border-bottom: 2px solid var(--red-line);
-    margin-bottom: 2rem;
-}
-
-.tab-button {
-    background-color: var(--bg-secondary);
-    color: var(--text-secondary);
-    border: none;
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 4px 4px 0 0;
-    margin-right: 0.5rem;
-    transition: all 0.3s;
-}
-
-.tab-button.active {
-    background-color: var(--red-line);
-    color: white;
-}
-
-.tab-button:hover:not(.active) {
-    background-color: var(--bg-tertiary);
-}
-
-.tab-content {
-    display: none;
-    background-color: var(--bg-secondary);
-    padding: 2rem;
-    border-radius: 0 8px 8px 8px;
-}
-
-.tab-content.active {
-    display: block;
-}
-
-/* Messaggi di errore */
-.error-message {
-    color: var(--error-color);
-    margin-top: 1rem;
-    text-align: center;
-}
-
-/* Badge per obbligatorio */
-.required-badge {
-    font-size: 0.8rem;
-    background-color: var(--red-line);
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
-    margin-left: 0.5rem;
-    color: white;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .two-column {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-    .full-width {
-        grid-column: span 1;
-    }
-    .header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-}
-/* style.css - Tema dinamico (dark/light) con variabili CSS */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    transition: background-color 0.3s ease, color 0.2s ease;
-}
-
-/* Variabili tema scuro (default) */
-body.dark-mode {
-    --bg-primary: #1e1e1e;
-    --bg-secondary: #2d2d2d;
-    --bg-tertiary: #3a3a3a;
-    --text-primary: #e0e0e0;
-    --text-secondary: #cccccc;
-    --border-color: #555;
-    --input-bg: #3a3a3a;
-    --input-bg-readonly: #2a2a2a;
-    --header-bg: #000000;
-    --red-line: #811d1d;
-    --btn-bg: #811d1d;
-    --btn-hover: #a52525;
-    --error-color: #ff6666;
-}
-
-/* Variabili tema chiaro */
-body.light-mode {
-    --bg-primary: #f5f5f5;
-    --bg-secondary: #ffffff;
-    --bg-tertiary: #e8e8e8;
-    --text-primary: #333333;
-    --text-secondary: #666666;
-    --border-color: #ccc;
-    --input-bg: #ffffff;
-    --input-bg-readonly: #f0f0f0;
-    --header-bg: #333333;
-    --red-line: #a33c3c;
-    --btn-bg: #a33c3c;
-    --btn-hover: #b84c4c;
-    --error-color: #d32f2f;
-}
-
-body {
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    line-height: 1.6;
-    min-height: 100vh;
-}
-
-/* Header */
-.header {
-    background-color: var(--header-bg);
-    padding: 1rem 2rem;
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
+    box-shadow: 0 2px 5px var(--shadow);
 }
 
 .header h1 {
@@ -360,6 +64,10 @@ body {
     font-weight: 300;
 }
 
+.header h1 i {
+    margin-right: 0.5rem;
+}
+
 .red-line {
     position: absolute;
     bottom: 0;
@@ -383,17 +91,16 @@ body {
     text-decoration: underline;
 }
 
-/* Pulsante tema */
 .theme-btn {
     background: transparent;
     border: 1px solid var(--red-line);
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     cursor: pointer;
-    padding: 0.2rem 0.5rem;
+    padding: 0.4rem 0.8rem;
     border-radius: 20px;
     line-height: 1;
-    transition: transform 0.2s;
+    transition: transform 0.2s, background-color 0.2s;
 }
 
 .theme-btn:hover {
@@ -401,21 +108,19 @@ body {
     background-color: rgba(255,255,255,0.1);
 }
 
-/* Container principale */
 .container {
     max-width: 1200px;
     margin: 2rem auto;
     padding: 0 2rem;
 }
 
-/* Login */
 .login-container {
-    max-width: 400px;
+    max-width: 500px;
     margin: 4rem auto;
     background-color: var(--bg-secondary);
     padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px var(--shadow);
 }
 
 .login-container h2 {
@@ -430,7 +135,7 @@ body {
     font-size: 0.9rem;
     background-color: var(--bg-tertiary);
     padding: 1rem;
-    border-radius: 4px;
+    border-radius: 8px;
 }
 
 .login-info ul {
@@ -438,7 +143,15 @@ body {
     color: var(--text-secondary);
 }
 
-/* Form elements */
+.login-info .tech-list {
+    list-style-type: none;
+    margin-left: 0;
+}
+
+.login-info .tech-list li {
+    margin-bottom: 0.3rem;
+}
+
 .form-group {
     margin-bottom: 1.2rem;
 }
@@ -449,6 +162,10 @@ body {
     color: var(--text-secondary);
     font-weight: 500;
     font-size: 0.9rem;
+}
+
+.form-group label i {
+    margin-right: 0.3rem;
 }
 
 .form-group.required label::after {
@@ -462,15 +179,16 @@ input, select, textarea {
     padding: 0.7rem;
     background-color: var(--input-bg);
     border: 1px solid var(--border-color);
-    border-radius: 4px;
+    border-radius: 6px;
     color: var(--text-primary);
     font-size: 1rem;
-    transition: border 0.3s;
+    transition: border 0.3s, box-shadow 0.2s;
 }
 
 input:focus, select:focus, textarea:focus {
     outline: none;
     border-color: var(--red-line);
+    box-shadow: 0 0 0 2px rgba(129, 29, 29, 0.2);
     background-color: var(--input-bg);
 }
 
@@ -480,37 +198,40 @@ input[readonly] {
     cursor: not-allowed;
 }
 
-/* Datalist (non stilizzabile direttamente) */
-datalist {
-    display: none;
-}
-
-/* Pulsanti */
 .btn-primary {
     background-color: var(--btn-bg);
     color: white;
     border: none;
     padding: 0.8rem 1.5rem;
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.1s;
     width: 100%;
+}
+
+.btn-primary i {
+    margin-right: 0.5rem;
 }
 
 .btn-primary:hover {
     background-color: var(--btn-hover);
+    transform: translateY(-1px);
 }
 
-/* Griglia a due colonne */
+.btn-primary:active {
+    transform: translateY(0);
+}
+
 .two-column {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
     background-color: var(--bg-secondary);
     padding: 2rem;
-    border-radius: 8px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px var(--shadow);
 }
 
 .full-width {
@@ -518,11 +239,11 @@ datalist {
     margin-top: 1rem;
 }
 
-/* Tabs */
 .tabs {
     display: flex;
     border-bottom: 2px solid var(--red-line);
     margin-bottom: 2rem;
+    gap: 0.5rem;
 }
 
 .tab-button {
@@ -532,9 +253,11 @@ datalist {
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
     cursor: pointer;
-    border-radius: 4px 4px 0 0;
-    margin-right: 0.5rem;
+    border-radius: 8px 8px 0 0;
     transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .tab-button.active {
@@ -550,31 +273,14 @@ datalist {
     display: none;
     background-color: var(--bg-secondary);
     padding: 2rem;
-    border-radius: 0 8px 8px 8px;
+    border-radius: 0 12px 12px 12px;
+    box-shadow: 0 2px 8px var(--shadow);
 }
 
 .tab-content.active {
     display: block;
 }
 
-/* Messaggi di errore */
-.error-message {
-    color: var(--error-color);
-    margin-top: 1rem;
-    text-align: center;
-}
-
-/* Badge per obbligatorio */
-.required-badge {
-    font-size: 0.8rem;
-    background-color: var(--red-line);
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
-    margin-left: 0.5rem;
-    color: white;
-}
-
-/* Stat cards */
 .stats-cards {
     display: flex;
     gap: 1rem;
@@ -585,11 +291,16 @@ datalist {
 .stat-card {
     background-color: var(--bg-tertiary);
     padding: 1.5rem;
-    border-radius: 8px;
+    border-radius: 12px;
     flex: 1;
     min-width: 150px;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 8px var(--shadow);
+    transition: transform 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
 }
 
 .stat-label {
@@ -599,13 +310,16 @@ datalist {
     margin-bottom: 0.5rem;
 }
 
+.stat-label i {
+    margin-right: 0.3rem;
+}
+
 .stat-value {
     font-size: 2.5rem;
     font-weight: bold;
     color: var(--red-line);
 }
 
-/* Progress bar */
 .progress-container {
     margin: 1rem 0 2rem;
 }
@@ -616,6 +330,7 @@ datalist {
     border-radius: 15px;
     overflow: hidden;
     margin-top: 0.5rem;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
 }
 
 .progress-fill {
@@ -626,16 +341,17 @@ datalist {
     line-height: 30px;
     font-size: 0.9rem;
     transition: width 0.3s ease;
+    font-weight: bold;
 }
 
-/* Tabelle */
 .ticket-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 1rem;
     background-color: var(--bg-secondary);
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
+    box-shadow: 0 2px 8px var(--shadow);
 }
 
 .ticket-table th,
@@ -660,7 +376,6 @@ datalist {
     background-color: var(--bg-tertiary);
 }
 
-/* Modale */
 .modal {
     display: none;
     position: fixed;
@@ -670,17 +385,19 @@ datalist {
     width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,0.7);
+    backdrop-filter: blur(3px);
 }
 
 .modal-content {
     background-color: var(--bg-secondary);
     margin: 5% auto;
     padding: 2rem;
-    border-radius: 8px;
+    border-radius: 12px;
     width: 90%;
     max-width: 1000px;
     max-height: 80vh;
     overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
 .close {
@@ -689,25 +406,26 @@ datalist {
     font-size: 2rem;
     font-weight: bold;
     cursor: pointer;
+    transition: color 0.2s;
 }
 
 .close:hover {
     color: var(--red-line);
 }
 
-/* Sezione monitoraggio cliente */
-.monitoring-section {
-    background-color: var(--bg-secondary);
-    padding: 1.5rem;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-}
-
+.monitoring-section,
 .tickets-section {
     background-color: var(--bg-secondary);
     padding: 1.5rem;
-    border-radius: 8px;
+    border-radius: 12px;
     margin-bottom: 2rem;
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+.monitoring-section h2 i,
+.tickets-section h3 i {
+    margin-right: 0.5rem;
+    color: var(--red-line);
 }
 
 #newIncidentBtn {
@@ -716,7 +434,68 @@ datalist {
     margin-bottom: 2rem;
 }
 
-/* Responsive */
+.suggestion-box {
+    background-color: var(--bg-tertiary);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-top: 1rem;
+}
+
+.suggested-team {
+    background-color: var(--input-bg-readonly);
+    font-weight: bold;
+    color: var(--red-line);
+    border-left: 3px solid var(--red-line);
+}
+
+.client-history {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+}
+
+.client-history ul {
+    list-style: none;
+    padding-left: 0;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.client-history li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.client-history li:hover {
+    color: var(--red-line);
+    text-decoration: underline;
+}
+
+.client-history li i {
+    color: var(--red-line);
+}
+
+.error-message {
+    color: var(--error-color);
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.required-badge {
+    font-size: 0.8rem;
+    background-color: var(--red-line);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    margin-left: 0.5rem;
+    color: white;
+}
+
 @media (max-width: 768px) {
     .two-column {
         grid-template-columns: 1fr;
@@ -728,5 +507,13 @@ datalist {
     .header {
         flex-direction: column;
         align-items: flex-start;
+        gap: 0.5rem;
+    }
+    .stats-cards {
+        flex-direction: column;
+    }
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
     }
 }

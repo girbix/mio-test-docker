@@ -18,7 +18,6 @@
     </div>
 
     <div class="container">
-        <!-- Sezione Monitoraggio -->
         <div class="monitoring-section">
             <h2><i class="fas fa-chart-simple"></i> Monitoraggio Ticket</h2>
             <div class="stats-cards">
@@ -43,7 +42,6 @@
             </div>
         </div>
 
-        <!-- Tabella ticket cliente -->
         <div class="tickets-section">
             <h3><i class="fas fa-ticket-alt"></i> I tuoi ticket</h3>
             <table class="ticket-table" id="clientTicketTable">
@@ -61,16 +59,13 @@
             </table>
         </div>
 
-        <!-- Pulsante per nuovo incident -->
         <button id="newIncidentBtn" class="btn-primary"><i class="fas fa-plus-circle"></i> Nuovo Incident</button>
 
-        <!-- Modale per creazione incident -->
         <div id="incidentModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h2><i class="fas fa-bug"></i> Crea Nuovo Incident</h2>
                 <form id="incidentForm" class="two-column">
-                    <!-- Colonna sinistra -->
                     <div class="left-column">
                         <div class="form-group required">
                             <label for="requestedBy"><i class="fas fa-user"></i> Requested by</label>
@@ -101,7 +96,6 @@
                             <datalist id="ci-list"></datalist>
                         </div>
                     </div>
-                    <!-- Colonna destra -->
                     <div class="right-column">
                         <div class="form-group required">
                             <label for="shortDescription"><i class="fas fa-heading"></i> Short description</label>

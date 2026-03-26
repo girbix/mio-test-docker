@@ -1,6 +1,5 @@
-// utils.js - Funzioni di utilità (tema, autenticazione, storage, suggerimento)
+// utils.js - Funzioni di utilità
 
-// ==================== TEMA ====================
 function applyTheme() {
     const savedTheme = localStorage.getItem('theme') || 'dark-mode';
     document.body.className = savedTheme;
@@ -18,7 +17,6 @@ function initThemeToggle() {
     if (toggleBtn) toggleBtn.addEventListener('click', toggleTheme);
 }
 
-// ==================== AUTENTICAZIONE ====================
 function authenticate(username, password) {
     return users.find(u => u.username === username && u.password === password);
 }
@@ -46,7 +44,6 @@ function requireAuth(allowedRoles) {
     return user;
 }
 
-// ==================== GESTIONE TICKET (localStorage) ====================
 function getTickets() {
     return JSON.parse(localStorage.getItem('tickets')) || [];
 }
@@ -118,7 +115,7 @@ function suggestTeam(shortDesc, desc = '') {
             return team;
         }
     }
-    return 'Network'; // default
+    return 'Network';
 }
 
 function seedTickets() {
@@ -173,7 +170,6 @@ function seedTickets() {
     }
 }
 
-// ==================== MULTI-TENANCY ====================
 function getCurrentCompanyData() {
     const user = getCurrentUser();
     if (!user || user.role !== 'client' || !user.companyId) return null;
@@ -196,4 +192,9 @@ function populateDatalist(listId, items) {
             list.appendChild(opt);
         });
     }
+}
+
+function setupLogout() {
+    const logoutLink = document.getElementById('logoutLink');
+    if (logoutLink) logoutLink.addEventListener('click', (e) => { e.preventDefault(); logout(); });
 }
